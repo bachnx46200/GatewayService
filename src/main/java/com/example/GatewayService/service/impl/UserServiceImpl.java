@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -43,6 +44,16 @@ public class UserServiceImpl implements UserService {
             System.out.println(userPrincipal.getRoles());
         }
         return userPrincipal;
+    }
+
+    @Override
+    public Optional<Account> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Account save(Account newaccount) {
+        return userRepository.save(newaccount);
     }
 
 }
