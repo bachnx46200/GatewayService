@@ -45,6 +45,7 @@ public class AuthController {
         token.setToken(jwtUtil.generateToken(userPrincipal));
         token.setTokenExpDate(jwtUtil.generateExpirationDate());
         token.setRoles(userPrincipal.getRoles());
+        token.setEmail(userPrincipal.getUsername());
 //        if(userPrincipal.getMagiaovien() !=null){
 //            token.setManguoidung(userPrincipal.getMagiaovien());
 //        }else if (userPrincipal.getMahocsinh()!=null){
