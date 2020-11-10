@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
 
             userPrincipal.setRoles(account.getRoles());
             userPrincipal.setUsername(account.getEmail());
-//            userPrincipal.setMagiaovien(account.getGiaovien().getMagiaovien());
-//            userPrincipal.setMahocsinh(account.getHocsinh().getMahocsinh());
+            userPrincipal.setMagiaovien(account.getGiaovien().getMagiaovien());
+            userPrincipal.setMahocsinh(account.getHocsinh().getMahocsinh());
 
             userPrincipal.setPassword(account.getPass());
             userPrincipal.setAuthorities(authorities);
