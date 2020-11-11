@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "token")
@@ -21,5 +22,5 @@ public class Token  {
     @Column(length = 1000)
     private String roles;
     private Date tokenExpDate;
-    private String manguoidung;
+    private UUID manguoidung;
 }
