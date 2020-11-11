@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class GiaoVienServiceImpl implements IGiaoVienService {
@@ -28,5 +29,10 @@ public class GiaoVienServiceImpl implements IGiaoVienService {
     @Override
     public GiaoVien save(GiaoVien newgiaovien) {
         return giaoVienRespository.save(newgiaovien);
+    }
+
+    @Override
+    public Optional<GiaoVien> findByid(UUID id) {
+        return giaoVienRespository.findById(id);
     }
 }

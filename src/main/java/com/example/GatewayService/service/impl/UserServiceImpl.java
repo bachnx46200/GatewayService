@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,14 +35,15 @@ public class UserServiceImpl implements UserService {
 
             userPrincipal.setRoles(account.getRoles());
             userPrincipal.setUsername(account.getEmail());
-//            userPrincipal.setMagiaovien(account.getGiaovien().getMagiaovien());
-//            userPrincipal.setMahocsinh(account.getHocsinh().getMahocsinh());
-
+            if(account.getGiaovien().getMagiaovien() != null){
+                userPrincipal.setGiaovienid(account.getGiaovien().getId());
+                userPrincipal.setHocsinhid(null);
+            }else{
+                userPrincipal.setGiaovienid(null);
+                userPrincipal.setHocsinhid(account.getHocsinh().getId());
+            }
             userPrincipal.setPassword(account.getPass());
             userPrincipal.setAuthorities(authorities);
-            System.out.println(userPrincipal.getUsername());
-            System.out.println(userPrincipal.getPassword());
-            System.out.println(userPrincipal.getRoles());
         }
         return userPrincipal;
     }
@@ -55,5 +57,7 @@ public class UserServiceImpl implements UserService {
     public Account save(Account newaccount) {
         return userRepository.save(newaccount);
     }
+
+
 
 }

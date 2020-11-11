@@ -45,11 +45,13 @@ public class AuthController {
         token.setToken(jwtUtil.generateToken(userPrincipal));
         token.setTokenExpDate(jwtUtil.generateExpirationDate());
         token.setRoles(userPrincipal.getRoles());
-//        if(userPrincipal.getMagiaovien() !=null){
-//            token.setManguoidung(userPrincipal.getMagiaovien());
-//        }else if (userPrincipal.getMahocsinh()!=null){
-//            token.setManguoidung(userPrincipal.getMahocsinh());
-//        }
+        if(userPrincipal.getGiaovienid() !=null){
+            token.setManguoidung(userPrincipal.getGiaovienid());
+        }else if (userPrincipal.getHocsinhid()!=null){
+            token.setManguoidung(userPrincipal.getHocsinhid());
+        }else{
+            token.setManguoidung(null);
+        }
         tokenService.createToken(token);
         return ResponseEntity.ok(token);
     }

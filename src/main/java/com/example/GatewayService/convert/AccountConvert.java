@@ -8,6 +8,7 @@ import com.example.GatewayService.entity.Hocsinh;
 import com.example.GatewayService.service.IGiaoVienService;
 import com.example.GatewayService.service.IHocSinhService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class AccountConvert {
         Account account = new Account();
         account.setStt(UUID.randomUUID());
         account.setEmail(accountDTO.getEmail());
-        account.setPass(accountDTO.getPass());
+        account.setPass(BCrypt.hashpw(accountDTO.getPass(),BCrypt.gensalt(12)));
         account.setRoles(accountDTO.getRoles());
         if(giaoVien.isPresent()){
             account.setGiaovien(giaoVien.get());

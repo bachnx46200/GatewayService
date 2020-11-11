@@ -15,8 +15,8 @@ public class UserPrincipal implements UserDetails {
     private String password;
     private String roles;
     private Collection authorities;
-    private String magiaovien;
-    private String mahocsinh;
+    private UUID giaovienid;
+    private UUID hocsinhid;
     @Override
     public boolean isAccountNonExpired() {
         return false;

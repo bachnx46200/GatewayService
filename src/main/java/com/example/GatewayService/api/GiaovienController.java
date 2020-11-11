@@ -4,6 +4,7 @@ package com.example.GatewayService.api;
 import com.example.GatewayService.DTOs.GiaovienDTO;
 import com.example.GatewayService.convert.GiaovienConvert;
 import com.example.GatewayService.entity.GiaoVien;
+import com.example.GatewayService.entity.Hocsinh;
 import com.example.GatewayService.service.IGiaoVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,5 +42,17 @@ public class GiaovienController {
         GiaoVien newgiaovien = giaovienConvert.toEntity(giaovienDTO);
         giaoVienmodel = giaoVienService.save(newgiaovien);
         return new ResponseEntity(giaovienConvert.toDTO(giaoVienmodel), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/giaovien/{id}")
+    public ResponseEntity<?> getone(@PathVariable UUID id){
+        GiaoVien giaoVienmodel;
+        Optional<GiaoVien> hocsinh = giaoVienService.findByid(id);
+        if(hocsinh.isPresent()){
+            giaoVienmodel = hocsinh.get();
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(giaovienConvert.toDTO(giaoVienmodel), HttpStatus.OK);
     }
 }

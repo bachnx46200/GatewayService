@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class HocSinhServiceImpl implements IHocSinhService {
@@ -22,5 +23,10 @@ public class HocSinhServiceImpl implements IHocSinhService {
     @Override
     public Hocsinh save(Hocsinh newhocsinh) {
         return hocSinhRepository.save(newhocsinh);
+    }
+
+    @Override
+    public Optional<Hocsinh> findByid(UUID id) {
+        return hocSinhRepository.findById(id);
     }
 }
