@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
             userPrincipal.setRoles(account.getRoles());
             userPrincipal.setUsername(account.getEmail());
-            if(account.getGiaovien().getMagiaovien() != null){
+            if(account.getGiaovien() != null){
                 userPrincipal.setGiaovienid(account.getGiaovien().getId());
                 userPrincipal.setHocsinhid(null);
             }else{
