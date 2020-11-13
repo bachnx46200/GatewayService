@@ -15,7 +15,7 @@ public interface IDiemRepository extends JpaRepository<Diem, UUID> {
     @Query(value = "SELECT * FROM diem d inner join hocsinh hs on d.mahocsinh = hs.mahocsinh inner join phancong pc on d.mapc = pc.mapc inner join mon m on pc.mamon = m.mamon INNER JOIN lophoc lh on pc.malop = lh.malop where lh.tenlop = ?1 and m.tenmon = ?2 and pc.hocki = ?3", nativeQuery = true)
     List<Diem> listByTenlopTenMonandPhancong(String tenlop, String tenmon, boolean hocki);
 
-    @Query("SELECT d FROM Diem d JOIN d.phancong pc join d.hocsinh hs join d.phancong.lop lh where hs.mahocsinh = ?1 and pc.hocki=?2 and hs.lop.id = lh.id")
+    @Query("SELECT d FROM Diem d JOIN d.phancong pc join d.hocsinh hs join d.phancong.lop lh where hs.id = ?1 and pc.hocki=?2 and hs.lop.id = lh.id")
     List<Diem> findBymahocsinh(String mahocsinh, boolean hocki);
 
     @Query("SELECT d FROM Diem d JOIN d.phancong pc join d.hocsinh hs where hs.mahocsinh = ?1 and pc.hocki=?2 and pc.mon.tenMon = ?3 and pc.namhoc.manamhoc = hs.lop.namhoc.manamhoc")
