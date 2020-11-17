@@ -28,7 +28,7 @@ public class Danhgia {
     private String noidung;
 
     @Column
-    private boolean hocki;
+    private Boolean hocki;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private NamHoc namhoc;

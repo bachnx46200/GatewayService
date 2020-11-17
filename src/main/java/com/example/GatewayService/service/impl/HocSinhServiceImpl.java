@@ -6,6 +6,7 @@ import com.example.GatewayService.service.IHocSinhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,5 +29,10 @@ public class HocSinhServiceImpl implements IHocSinhService {
     @Override
     public Optional<Hocsinh> findByid(UUID id) {
         return hocSinhRepository.findById(id);
+    }
+
+    @Override
+    public List<Hocsinh> findAll() {
+        return hocSinhRepository.findAll();
     }
 }

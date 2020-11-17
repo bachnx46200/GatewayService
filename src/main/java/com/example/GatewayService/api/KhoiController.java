@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,6 +20,14 @@ public class KhoiController {
 
     @Autowired
     KhoiConvert khoiConvert;
+
+    @GetMapping("/khoi")
+    public ResponseEntity<?> getall(){
+        List<Khoi> list = khoiService.findAll();
+        List<KhoiDTO> khoiDTOS = new ArrayList<>();
+        list.forEach(x -> khoiDTOS.add(khoiConvert.toDTO(x)));
+        return new ResponseEntity<>(khoiDTOS, HttpStatus.OK);
+    }
 
     @PostMapping("/khoi")
     public ResponseEntity<?> add(@RequestBody KhoiDTO khoiDTO){

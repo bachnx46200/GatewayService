@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "namhoc")
+@Where(clause = "trangthai=true")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class NamHoc {
     @Column
     private Date ngayketthuc;
     @Column
-    private boolean trangthai;
+    private Boolean trangthai;
     @OneToMany(
             mappedBy = "namhoc",
             cascade = CascadeType.ALL,

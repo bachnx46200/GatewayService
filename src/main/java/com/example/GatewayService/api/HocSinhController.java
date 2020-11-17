@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -22,6 +24,14 @@ public class HocSinhController {
 
     @Autowired
     HocSinhConvert hocSinhConvert;
+
+    @GetMapping("/hocsinh")
+    public ResponseEntity<?> getall(){
+        List<Hocsinh> list = hocSinhService.findAll();
+        List<HocSinhDTO> hocSinhDTOS = new ArrayList<>();
+        list.forEach(x -> hocSinhDTOS.add(hocSinhConvert.toDTO(x)));
+        return new ResponseEntity<>(hocSinhDTOS, HttpStatus.OK);
+    }
 
     @PostMapping("/hocsinh")
     public ResponseEntity<?> add(@RequestBody HocSinhDTO hocSinhDTO){

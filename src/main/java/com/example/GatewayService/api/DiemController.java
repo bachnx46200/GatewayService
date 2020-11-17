@@ -1,7 +1,7 @@
 package com.example.GatewayService.api;
 
 import com.example.GatewayService.DTOs.diemCuoiNamDTO;
-import com.example.GatewayService.DTOs.diemDTO;
+import com.example.GatewayService.DTOs.DiemDTO;
 import com.example.GatewayService.DTOs.lopResultDTO;
 import com.example.GatewayService.convert.DiemConvert;
 import com.example.GatewayService.entity.Diem;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,12 +25,14 @@ public class DiemController {
     @Autowired
     DiemConvert diemConvert;
 
+
+
     @GetMapping("/all")
     public ResponseEntity<?> getall(){
         List<Diem> list = diemService.findAll();
-        List<diemDTO> diemDTOS = new ArrayList<>();
-        list.forEach(x -> diemDTOS.add(diemConvert.toDTO(x)));
-        return new ResponseEntity<>(diemDTOS, HttpStatus.OK);
+        List<DiemDTO> DiemDTOS = new ArrayList<>();
+        list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
+        return new ResponseEntity<>(DiemDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/list")
@@ -43,9 +46,9 @@ public class DiemController {
     @GetMapping("/getByStudentId")
     ResponseEntity<?> getBy( @RequestParam(value = "mahocsinh", required = false)String mahocsinh, @RequestParam(value = "hocki", required = false)String ki){
         List<Diem> list = diemService.findByStudetID(mahocsinh, ki.equals("true") ? true : false);
-        List<diemDTO> diemDTOS = new ArrayList<>();
-        list.forEach(x -> diemDTOS.add(diemConvert.toDTO(x)));
-        return new ResponseEntity<>(diemDTOS, HttpStatus.OK);
+        List<DiemDTO> DiemDTOS = new ArrayList<>();
+        list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
+        return new ResponseEntity<>(DiemDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/getBySubject")
@@ -53,9 +56,9 @@ public class DiemController {
                                     @RequestParam(value = "hocki", required = false)String ki,
                                     @RequestParam(value = "temon", required = false)String tenmon){
         List<Diem> list = diemService.findByStudentIDAndSubject(mahocsinh, ki.equals("true") ? true : false, tenmon);
-        List<diemDTO> diemDTOS = new ArrayList<>();
-        list.forEach(x -> diemDTOS.add(diemConvert.toDTO(x)));
-        return new ResponseEntity<>(diemDTOS, HttpStatus.OK);
+        List<DiemDTO> DiemDTOS = new ArrayList<>();
+        list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
+        return new ResponseEntity<>(DiemDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/getClass")

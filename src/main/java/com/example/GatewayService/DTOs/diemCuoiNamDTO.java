@@ -12,5 +12,5 @@ public class diemCuoiNamDTO {
     private String hoten;
     private String tenMon;
     private float diemTBM;
-    private boolean hocki;
+    private Boolean hocki;
 }

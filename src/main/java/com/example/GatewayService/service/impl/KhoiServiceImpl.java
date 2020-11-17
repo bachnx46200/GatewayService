@@ -6,6 +6,7 @@ import com.example.GatewayService.service.IKhoiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,10 @@ public class KhoiServiceImpl implements IKhoiService {
     @Override
     public Khoi save(Khoi newkhoi) {
         return khoiRepository.save(newkhoi);
+    }
+
+    @Override
+    public List<Khoi> findAll() {
+        return khoiRepository.findAll();
     }
 }

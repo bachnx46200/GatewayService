@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,6 +20,14 @@ public class LopHocController {
 
     @Autowired
     LopHocConvert lopHocConvert;
+
+    @GetMapping("lophoc")
+    public ResponseEntity<?> getall(){
+        List<LopHoc> list = lopHocService.findAll();
+        List<LopHocDTO> lopHocDTOS = new ArrayList<>();
+        list.forEach(x -> lopHocDTOS.add(lopHocConvert.toDTO(x)));
+        return new ResponseEntity<>(lopHocDTOS, HttpStatus.OK);
+    }
 
     @PostMapping("/lophoc")
     public ResponseEntity<?> add(@RequestBody LopHocDTO lopHocDTO){

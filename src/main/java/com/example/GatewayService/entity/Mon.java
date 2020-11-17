@@ -23,7 +23,7 @@ public class Mon {
     @Column
     private String tenMon;
     @Column
-    private boolean hinhthucdanhgia;
+    private Boolean hinhthucdanhgia;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Khoi khoi;

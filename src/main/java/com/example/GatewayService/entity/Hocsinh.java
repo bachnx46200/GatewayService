@@ -3,6 +3,7 @@ package com.example.GatewayService.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "hocsinh")
+@Where(clause = "trangthai=true")
 @Getter
 @Setter
 public class Hocsinh {

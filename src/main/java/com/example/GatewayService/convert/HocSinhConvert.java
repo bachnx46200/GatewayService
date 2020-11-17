@@ -42,6 +42,7 @@ public class HocSinhConvert {
         if(lopHoc.isPresent()){
             hocsinh.setLop(lopHoc.get());
         }
+        hocsinh.setTrangthai(true);
         return hocsinh;
     }
 }
