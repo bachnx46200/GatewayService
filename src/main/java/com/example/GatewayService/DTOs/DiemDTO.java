@@ -7,10 +7,10 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class diemDTO {
+public class DiemDTO {
     private String mahocsinh;
     private String hoten;
-    private boolean gioitinh;
+    private Boolean gioitinh;
     private String mon;
     private int diemmieng1;
     private int diemmieng2;

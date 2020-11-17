@@ -1,14 +1,14 @@
 package com.example.GatewayService.convert;
 
 
-import com.example.GatewayService.DTOs.diemDTO;
+import com.example.GatewayService.DTOs.DiemDTO;
 import com.example.GatewayService.entity.Diem;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DiemConvert {
-    public diemDTO toDTO(Diem diem){
-        diemDTO diemDTO = new diemDTO();
+    public DiemDTO toDTO(Diem diem){
+        DiemDTO diemDTO = new DiemDTO();
         diemDTO.setMahocsinh(diem.getHocsinh().getMahocsinh());
         diemDTO.setHoten(diem.getHocsinh().getHoten());
         diemDTO.setGioitinh(diem.getHocsinh().getGioitinh());

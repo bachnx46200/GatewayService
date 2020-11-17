@@ -12,7 +12,7 @@ import java.util.Date;
 public class GiaovienDTO {
     private String magiaovien;
     private String hoten;
-    private boolean gioitinh;
+    private Boolean gioitinh;
     private Date ngaysinh;
     private String diachi;
     private String dienthoai;

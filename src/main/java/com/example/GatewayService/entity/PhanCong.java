@@ -27,13 +27,13 @@ public class PhanCong {
     private GiaoVien giaovien;
 
     @Column
-    private boolean vaitro;
+    private Boolean vaitro;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Mon mon;
 
     @Column
-    private boolean hocki;
+    private Boolean hocki;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private NamHoc namhoc;

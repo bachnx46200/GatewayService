@@ -26,7 +26,7 @@ public class DiemDanh {
     private Date ngay;
 
     @Column
-    private boolean trangthai;
+    private Boolean trangthai;
 
     @Column
     private boolean hocki;

@@ -23,7 +23,7 @@ public class GiaoVien {
     @Column
     private String hoten;
     @Column
-    private boolean gioitinh;
+    private Boolean gioitinh;
     @Column
     private Date ngaysinh;
     @Column

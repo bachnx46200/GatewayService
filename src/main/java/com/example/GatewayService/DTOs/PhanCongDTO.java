@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class diemCuoiNamDTO {
-    private String mahocsinh;
-    private String hoten;
-    private String tenMon;
-    private float diemTBM;
+public class PhanCongDTO {
+    private String malop;
+    private String magiaovien;
+    private Boolean vaitro;
+    private String tenmon;
     private Boolean hocki;
+    private String nienhoc;
 }

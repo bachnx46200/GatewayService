@@ -13,7 +13,7 @@ public class NamHocConvert {
         namHocDTO.setNienhoc(namHoc.getNienhoc());
         namHocDTO.setNgaybatdau(namHoc.getNgaybatdau());
         namHocDTO.setNgayketthuc(namHoc.getNgayketthuc());
-        namHocDTO.setTrangthai(namHoc.isTrangthai());
+        namHocDTO.setTrangthai(namHoc.getTrangthai());
         return namHocDTO;
     }
 
@@ -23,7 +23,7 @@ public class NamHocConvert {
         namHoc.setNienhoc(namHocDTO.getNienhoc());
         namHoc.setNgaybatdau(namHocDTO.getNgaybatdau());
         namHoc.setNgayketthuc(namHocDTO.getNgayketthuc());
-        namHoc.setTrangthai(namHoc.isTrangthai());
+        namHoc.setTrangthai(namHocDTO.getTrangthai());
         return namHoc;
     }
 }

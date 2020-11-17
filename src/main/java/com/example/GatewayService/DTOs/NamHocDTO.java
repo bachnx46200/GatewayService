@@ -13,5 +13,5 @@ public class NamHocDTO {
     private String nienhoc;
     private Date ngaybatdau;
     private Date ngayketthuc;
-    private boolean trangthai;
+    private Boolean trangthai;
 }
