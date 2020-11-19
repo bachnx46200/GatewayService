@@ -10,13 +10,15 @@ import java.util.*;
 public interface IDiemService {
     List<Diem> findAll();
 
-    List<Diem> findByStudetID(String id, boolean hocki);
+    List<Diem> findByStudetID(UUID id, boolean hocki);
 
     List<Diem> findByEVE(String tenlop, String tenmon, boolean hocki);
 
-    List<Diem> findByStudentIDAndSubject(String mahocsinh, boolean ki, String tenmon);
+    List<Diem> findByStudentIDAndSubject(UUID mahocsinh, boolean ki, String tenmon);
 
-    List<lopResultDTO> findClass(String mahocsinh);
+    List<lopResultDTO> findClass(UUID mahocsinh);
 
-    List<diemCuoiNamDTO> findPoint(String mahocsinh, String tenlop);
+    diemCuoiNamDTO findPoint(UUID mahocsinh, String tenlop, Boolean ki);
+
+    void delete();
 }

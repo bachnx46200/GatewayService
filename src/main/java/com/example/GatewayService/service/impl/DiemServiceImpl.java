@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DiemServiceImpl implements IDiemService {
@@ -22,7 +23,7 @@ public class DiemServiceImpl implements IDiemService {
     }
 
     @Override
-    public List<Diem> findByStudetID(String id, boolean hocki) {
+    public List<Diem> findByStudetID(UUID id, boolean hocki) {
         return diemRepository.findBymahocsinh(id, hocki);
     }
 
@@ -32,22 +33,24 @@ public class DiemServiceImpl implements IDiemService {
     }
 
     @Override
-    public List<Diem> findByStudentIDAndSubject(String mahocsinh, boolean ki, String tenmon) {
-        return diemRepository.findBymahocsinhAndMon(mahocsinh, ki, tenmon);
+    public List<Diem> findByStudentIDAndSubject(UUID id, boolean ki, String tenmon) {
+        return diemRepository.findBymahocsinhAndMon(id, ki, tenmon);
     }
 
     @Override
-    public List<lopResultDTO> findClass(String mahocsinh) {
+    public List<lopResultDTO> findClass(UUID mahocsinh) {
         return diemRepository.findLopTungHoc(mahocsinh);
     }
 
     @Override
-    public List<diemCuoiNamDTO> findPoint(String mahocsinh, String tenlop) {
-        return diemRepository.findTongKetCuoiNam(mahocsinh,tenlop);
+    public diemCuoiNamDTO findPoint(UUID mahocsinh, String tenlop, Boolean ki) {
+        return diemRepository.findTongKetCuoiNam(mahocsinh,tenlop, ki);
     }
 
-//    @Override
-//    public List<Diem> findByhocsinh_mahocsinhAndphancong_hocki(String mahocsinh, boolean ki) {
-//        return diemRepository.findByhocsinh_mahocsinhAndphancong_hocki(mahocsinh,ki);
-//    }
+    @Override
+    public void delete() {
+        diemRepository.deleteAll();
+    }
+
+
 }
