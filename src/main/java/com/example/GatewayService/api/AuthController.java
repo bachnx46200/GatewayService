@@ -52,6 +52,7 @@ public class AuthController {
         }else{
             token.setManguoidung(null);
         }
+        token.setEmail(userPrincipal.getUsername());
         tokenService.createToken(token);
         return ResponseEntity.ok(token);
     }
