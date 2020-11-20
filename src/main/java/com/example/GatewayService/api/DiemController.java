@@ -11,9 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -44,17 +42,17 @@ public class DiemController {
     }
 
     @GetMapping("/getByStudentId")
-    ResponseEntity<?> getBy( @RequestParam(value = "mahocsinh", required = false)String mahocsinh, @RequestParam(value = "hocki", required = false)String ki){
-        List<Diem> list = diemService.findByStudetID(mahocsinh, ki.equals("true") ? true : false);
+    ResponseEntity<?> getBy( @RequestParam(value = "id", required = false)UUID id, @RequestParam(value = "hocki", required = false)String ki){
+        List<Diem> list = diemService.findByStudetID(id, ki.equals("true") ? true : false);
         List<DiemDTO> DiemDTOS = new ArrayList<>();
         list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
         return new ResponseEntity<>(DiemDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/getBySubject")
-    ResponseEntity<?> getBySubject( @RequestParam(value = "mahocsinh", required = false)String mahocsinh,
+    ResponseEntity<?> getBySubject( @RequestParam(value = "mahocsinh", required = false)UUID mahocsinh,
                                     @RequestParam(value = "hocki", required = false)String ki,
-                                    @RequestParam(value = "temon", required = false)String tenmon){
+                                    @RequestParam(value = "tenmon", required = false)String tenmon){
         List<Diem> list = diemService.findByStudentIDAndSubject(mahocsinh, ki.equals("true") ? true : false, tenmon);
         List<DiemDTO> DiemDTOS = new ArrayList<>();
         list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
@@ -62,15 +60,28 @@ public class DiemController {
     }
 
     @GetMapping("/getClass")
-    ResponseEntity<?> getClass( @RequestParam(value = "mahocsinh", required = false)String mahocsinh){
+    ResponseEntity<?> getClass( @RequestParam(value = "mahocsinh", required = false)UUID mahocsinh){
         List<lopResultDTO> list = diemService.findClass(mahocsinh);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("/getPoint")
-    ResponseEntity<?> getPoint( @RequestParam(value = "mahocsinh", required = false)String mahocsinh,
+    ResponseEntity<?> getPoint( @RequestParam(value = "mahocsinh", required = false)UUID mahocsinh,
                                     @RequestParam(value = "tenlop", required = false)String tenlop){
-        List<diemCuoiNamDTO> list = diemService.findPoint(mahocsinh, tenlop);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+
+        Map<String, Object> response = new HashMap<>();
+        diemCuoiNamDTO diemhocki1 = diemService.findPoint(mahocsinh, tenlop, true);
+        diemCuoiNamDTO diemhocki2 = diemService.findPoint(mahocsinh, tenlop, false);
+        response.put("mahocsinh:",diemhocki1.getMahocsinh());
+        response.put("hoten:",diemhocki1.getHoten());
+        response.put("mon:",diemhocki1.getTenMon());
+        response.put("diemhk1:",diemhocki1.getDiemTBM());
+        response.put("diemhk2:",diemhocki2.getDiemTBM());
+        response.put("tbm:",(diemhocki1.getDiemTBM()+diemhocki2.getDiemTBM())/2);
+        return ResponseEntity.ok(response);
+    }
+    @DeleteMapping("/diem")
+    public void delete(){
+        diemService.delete();
     }
 }
