@@ -18,6 +18,7 @@ public interface IDiemRepository extends JpaRepository<Diem, UUID> {
     @Query("SELECT d FROM Diem d JOIN d.phancong pc join d.hocsinh hs join d.phancong.lop lh where hs.id = ?1 and pc.hocki=?2 and hs.lop.id = lh.id")
     List<Diem> findBymahocsinh(UUID id, boolean hocki);
 
+
     @Query("SELECT d FROM Diem d JOIN d.phancong pc join d.hocsinh hs where hs.id = ?1 and pc.hocki=?2 and pc.mon.tenMon = ?3 and pc.namhoc.manamhoc = hs.lop.namhoc.manamhoc")
     List<Diem> findBymahocsinhAndMon(UUID id, boolean hocki, String tenMon);
 
