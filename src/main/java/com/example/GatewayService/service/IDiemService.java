@@ -18,7 +18,7 @@ public interface IDiemService {
 
     List<lopResultDTO> findClass(UUID mahocsinh);
 
-    diemCuoiNamDTO findPoint(UUID mahocsinh, String tenlop, Boolean ki);
+    List<diemCuoiNamDTO> findPoint(UUID mahocsinh, String tenlop, Boolean ki);
 
     void delete();
 }

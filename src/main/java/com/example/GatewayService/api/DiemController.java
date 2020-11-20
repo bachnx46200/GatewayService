@@ -2,6 +2,7 @@ package com.example.GatewayService.api;
 
 import com.example.GatewayService.DTOs.diemCuoiNamDTO;
 import com.example.GatewayService.DTOs.DiemDTO;
+import com.example.GatewayService.DTOs.diemCuoiNamResponse;
 import com.example.GatewayService.DTOs.lopResultDTO;
 import com.example.GatewayService.convert.DiemConvert;
 import com.example.GatewayService.entity.Diem;
@@ -68,17 +69,24 @@ public class DiemController {
     @GetMapping("/getPoint")
     ResponseEntity<?> getPoint( @RequestParam(value = "mahocsinh", required = false)UUID mahocsinh,
                                     @RequestParam(value = "tenlop", required = false)String tenlop){
-
-        Map<String, Object> response = new HashMap<>();
-        diemCuoiNamDTO diemhocki1 = diemService.findPoint(mahocsinh, tenlop, true);
-        diemCuoiNamDTO diemhocki2 = diemService.findPoint(mahocsinh, tenlop, false);
-        response.put("mahocsinh:",diemhocki1.getMahocsinh());
-        response.put("hoten:",diemhocki1.getHoten());
-        response.put("mon:",diemhocki1.getTenMon());
-        response.put("diemhk1:",diemhocki1.getDiemTBM());
-        response.put("diemhk2:",diemhocki2.getDiemTBM());
-        response.put("tbm:",(diemhocki1.getDiemTBM()+diemhocki2.getDiemTBM())/2);
-        return ResponseEntity.ok(response);
+        List<diemCuoiNamDTO> diemhocki1 = diemService.findPoint(mahocsinh, tenlop, true);
+        List<diemCuoiNamDTO> diemhocki2 = diemService.findPoint(mahocsinh, tenlop, false);
+        List<diemCuoiNamResponse> diemCuoiNamResponse = new ArrayList<>();
+        for (diemCuoiNamDTO diemCuoiNamDTO1:diemhocki1 ){
+            for (diemCuoiNamDTO diemCuoiNamDTO2:diemhocki2){
+                if(diemCuoiNamDTO1.getTenMon().equals(diemCuoiNamDTO2.getTenMon())){
+                    diemCuoiNamResponse data = new diemCuoiNamResponse();
+                    data.setMahocsinh(diemCuoiNamDTO1.getMahocsinh());
+                    data.setHoten(diemCuoiNamDTO1.getHoten());
+                    data.setMon(diemCuoiNamDTO1.getTenMon());
+                    data.setDiemhk1(diemCuoiNamDTO1.getDiemTBM());
+                    data.setDiemhk2(diemCuoiNamDTO2.getDiemTBM());
+                    data.setTbm((diemCuoiNamDTO1.getDiemTBM()+diemCuoiNamDTO2.getDiemTBM())/2);
+                    diemCuoiNamResponse.add(data);
+                }
+            }
+        };
+        return new ResponseEntity<>(diemCuoiNamResponse, HttpStatus.OK);
     }
     @DeleteMapping("/diem")
     public void delete(){
