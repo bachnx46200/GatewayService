@@ -43,7 +43,7 @@ public class DiemServiceImpl implements IDiemService {
     }
 
     @Override
-    public diemCuoiNamDTO findPoint(UUID mahocsinh, String tenlop, Boolean ki) {
+    public List<diemCuoiNamDTO> findPoint(UUID mahocsinh, String tenlop, Boolean ki) {
         return diemRepository.findTongKetCuoiNam(mahocsinh,tenlop, ki);
     }
 

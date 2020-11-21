@@ -26,5 +26,5 @@ public interface IDiemRepository extends JpaRepository<Diem, UUID> {
     List<lopResultDTO> findLopTungHoc(UUID id);
 
     @Query("select new com.example.GatewayService.DTOs.diemCuoiNamDTO(hs.mahocsinh, hs.hoten, mh.tenMon, d.diemTBM, d.phancong.hocki) from Diem d join d.hocsinh hs join d.phancong.lop lh join d.phancong.mon mh where hs.id=?1 and lh.tenlop=?2 and d.phancong.hocki=?3 ")
-    diemCuoiNamDTO findTongKetCuoiNam(UUID id, String tenlop, Boolean Ki);
+    List<diemCuoiNamDTO> findTongKetCuoiNam(UUID id, String tenlop, Boolean Ki);
 }
