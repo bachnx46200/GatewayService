@@ -27,6 +27,8 @@ public class GiaoVien {
     @Column
     private Date ngaysinh;
     @Column
+    private String email;
+    @Column
     private String diachi;
     @Column(length = 15)
     private String dienthoai;
