@@ -14,6 +14,7 @@ public class GiaovienConvert {
         giaovienDTO.setHoten(giaoVien.getHoten());
         giaovienDTO.setNgaysinh(giaoVien.getNgaysinh());
         giaovienDTO.setGioitinh(giaoVien.getGioitinh());
+        giaovienDTO.setEmail(giaoVien.getEmail());
         giaovienDTO.setCmnd(giaoVien.getCmnd());
         giaovienDTO.setDiachi(giaoVien.getDiachi());
         giaovienDTO.setDienthoai(giaoVien.getDienthoai());
@@ -26,6 +27,7 @@ public class GiaovienConvert {
         giaoVien.setMagiaovien(giaovienDTO.getMagiaovien());
         giaoVien.setHoten(giaovienDTO.getHoten());
         giaoVien.setNgaysinh(giaovienDTO.getNgaysinh());
+        giaoVien.setEmail(giaovienDTO.getEmail());
         giaoVien.setGioitinh(giaovienDTO.getGioitinh());
         giaoVien.setCmnd(giaovienDTO.getCmnd());
         giaoVien.setDiachi(giaovienDTO.getDiachi());

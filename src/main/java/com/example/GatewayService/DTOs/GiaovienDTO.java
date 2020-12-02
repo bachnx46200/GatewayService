@@ -14,6 +14,7 @@ public class GiaovienDTO {
     private String hoten;
     private Boolean gioitinh;
     private Date ngaysinh;
+    private String email;
     private String diachi;
     private String dienthoai;
     private String cmnd;

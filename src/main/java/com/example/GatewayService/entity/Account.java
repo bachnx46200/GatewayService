@@ -30,4 +30,5 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private GiaoVien giaovien;
+
 }
