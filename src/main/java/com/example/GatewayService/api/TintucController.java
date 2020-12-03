@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -46,5 +48,16 @@ public class TintucController {
         );
         TinTuc tinTuc = tintucConvert.toEntityWhenUpdate(tinTucRequest);
         return new ResponseEntity<>(tintucConvert.toDTO(tintucService.save(tinTuc)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/tintuc/{id}")
+    public ResponseEntity<?> delete(@PathVariable UUID id) throws ResourceNotFoundException {
+        Optional<TinTuc> dataMustBeDelete = tintucService.findById(id);
+        if (dataMustBeDelete.isPresent()) {
+            TinTuc dataDelete = dataMustBeDelete.get();
+            return new ResponseEntity(tintucConvert.toDTO(tintucService.deleteSoftById(dataDelete)), HttpStatus.OK);
+        } else {
+            throw new ResourceNotFoundException("Khong tim thay tin tuc can xoa: " + id);
+        }
     }
 }

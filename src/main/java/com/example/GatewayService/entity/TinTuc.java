@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,6 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tintuc")
+@Where(clause = "trangthai = true")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -41,5 +39,8 @@ public class TinTuc {
 
     @Column(insertable = false)
     private Date modifiedDate;
+
+    @Column(columnDefinition = "boolean default true")
+    private Boolean trangthai;
 
 }
