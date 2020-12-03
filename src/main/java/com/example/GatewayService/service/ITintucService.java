@@ -12,4 +12,6 @@ public interface ITintucService {
     TinTuc save(TinTuc toEntityWhenAdd);
 
     Optional<TinTuc> findById(UUID id);
+
+    TinTuc deleteSoftById(TinTuc dataDelete);
 }

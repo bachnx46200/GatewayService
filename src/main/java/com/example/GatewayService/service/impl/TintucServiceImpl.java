@@ -29,4 +29,11 @@ public class TintucServiceImpl implements ITintucService {
     public Optional<TinTuc> findById(UUID id) {
         return tinTucRespository.findById(id);
     }
+
+    @Override
+    public TinTuc deleteSoftById(TinTuc dataDelete) {
+        dataDelete.setTrangthai(false);
+        tinTucRespository.save(dataDelete);
+        return dataDelete;
+    }
 }

@@ -19,6 +19,7 @@ public class TintucConvert {
         tinTuc.setNoidung(themTinTucDTO.getNoidung());
         tinTuc.setCreatedBy(themTinTucDTO.getCreatedBy());
         tinTuc.setCreatedDate(date);
+        tinTuc.setTrangthai(true);
         return tinTuc;
     }
 
@@ -30,6 +31,7 @@ public class TintucConvert {
         tinTuc.setNoidung(SuaTinTucDTO.getNoidung());
         tinTuc.setModifiedBy(SuaTinTucDTO.getUpdateBy());
         tinTuc.setModifiedDate(date);
+        tinTuc.setTrangthai(true);
         return tinTuc;
     }
 
