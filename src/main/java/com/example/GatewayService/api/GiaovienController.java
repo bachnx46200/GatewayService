@@ -47,9 +47,9 @@ public class GiaovienController {
     @GetMapping("/giaovien/{id}")
     public ResponseEntity<?> getone(@PathVariable UUID id){
         GiaoVien giaoVienmodel;
-        Optional<GiaoVien> hocsinh = giaoVienService.findByid(id);
-        if(hocsinh.isPresent()){
-            giaoVienmodel = hocsinh.get();
+        Optional<GiaoVien> giaoVien = giaoVienService.findByid(id);
+        if(giaoVien.isPresent()){
+            giaoVienmodel = giaoVien.get();
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
