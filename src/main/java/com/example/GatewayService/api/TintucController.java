@@ -35,6 +35,14 @@ public class TintucController {
         return new ResponseEntity<>(tinTucDTOS, HttpStatus.OK);
     }
 
+    @GetMapping("/tintuc/{loaitintuc}")
+    public ResponseEntity<?> gettintuchoctap(@PathVariable String loaitintuc){
+        List<TinTuc> tinTucList = tintucService.findByloaitintuc(loaitintuc.equals("hoctap")? true:false);
+        List<TinTucDTO> tinTucDTOS = new ArrayList<>();
+        tinTucList.forEach(x -> tinTucDTOS.add(tintucConvert.toDTO(x)));
+        return new ResponseEntity<>(tinTucDTOS, HttpStatus.OK);
+    }
+
     @PostMapping("/tintuc")
     public ResponseEntity<?> add(@RequestBody ThemTinTucDTO themTinTucDTO){
         TinTuc tinTuc1 = tintucService.save(tintucConvert.toEntityWhenAdd(themTinTucDTO));

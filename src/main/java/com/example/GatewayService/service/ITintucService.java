@@ -14,4 +14,6 @@ public interface ITintucService {
     Optional<TinTuc> findById(UUID id);
 
     TinTuc deleteSoftById(TinTuc dataDelete);
+
+    List<TinTuc> findByloaitintuc(Boolean loaitintuc);
 }

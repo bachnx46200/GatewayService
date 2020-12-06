@@ -25,6 +25,9 @@ public class TinTuc {
     @Column
     private String tieude;
 
+    @Column
+    private Boolean loaitintuc;
+
     @Column(length = 100000)
     private String noidung;
 
