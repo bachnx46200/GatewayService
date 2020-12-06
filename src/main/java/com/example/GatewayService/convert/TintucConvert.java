@@ -3,14 +3,21 @@ package com.example.GatewayService.convert;
 import com.example.GatewayService.DTOs.SuaTinTucDTO;
 import com.example.GatewayService.DTOs.ThemTinTucDTO;
 import com.example.GatewayService.DTOs.TinTucDTO;
+import com.example.GatewayService.entity.GiaoVien;
 import com.example.GatewayService.entity.TinTuc;
+import com.example.GatewayService.service.IGiaoVienService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
 public class TintucConvert {
+    @Autowired
+    IGiaoVienService giaoVienService;
+
     public TinTuc toEntityWhenAdd(ThemTinTucDTO themTinTucDTO){
         java.util.Date date = new Date();
         TinTuc tinTuc = new TinTuc();
@@ -38,6 +45,10 @@ public class TintucConvert {
     }
 
     public TinTucDTO toDTO(TinTuc tinTuc){
+        Optional<GiaoVien> create = giaoVienService.findByid(tinTuc.getCreatedBy());
+        if(tinTuc.getModifiedBy() != null){
+
+        }
         TinTucDTO tinTucDTO = new TinTucDTO();
         tinTucDTO.setTieude(tinTuc.getTieude());
         if(tinTuc.getLoaitintuc() == null){
@@ -46,12 +57,21 @@ public class TintucConvert {
             tinTucDTO.setLoaitintuc(tinTuc.getLoaitintuc() == true ?"Học Tập":"Hoạt Động");
         }
         tinTucDTO.setNoidung(tinTuc.getNoidung());
-        tinTucDTO.setCreatedBy(tinTuc.getCreatedBy());
+        if(create.isPresent()){
+            tinTucDTO.setCreatedBy(create.get().getHoten());
+        }else {
+            tinTucDTO.setCreatedBy(null);
+        }
         tinTucDTO.setCreatedDate(tinTuc.getCreatedDate());
         if(tinTuc.getModifiedBy() == null){
             tinTucDTO.setUpdateBy(null);
         }else{
-            tinTucDTO.setUpdateBy(tinTuc.getModifiedBy());
+            Optional<GiaoVien> update = giaoVienService.findByid(tinTuc.getModifiedBy());
+            if(update.isPresent()){
+                tinTucDTO.setUpdateBy(update.get().getHoten());
+            }else{
+                tinTucDTO.setUpdateBy(null);
+            }
         }
         if(tinTuc.getModifiedDate() == null){
             tinTucDTO.setUpdateDate(null);
