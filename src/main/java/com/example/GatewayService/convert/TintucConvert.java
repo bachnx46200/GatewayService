@@ -16,6 +16,7 @@ public class TintucConvert {
         TinTuc tinTuc = new TinTuc();
         tinTuc.setId(UUID.randomUUID());
         tinTuc.setTieude(themTinTucDTO.getTieude());
+        tinTuc.setLoaitintuc(themTinTucDTO.getLoaitintuc());
         tinTuc.setNoidung(themTinTucDTO.getNoidung());
         tinTuc.setCreatedBy(themTinTucDTO.getCreatedBy());
         tinTuc.setCreatedDate(date);
@@ -28,6 +29,7 @@ public class TintucConvert {
         TinTuc tinTuc = new TinTuc();
         tinTuc.setId(SuaTinTucDTO.getId());
         tinTuc.setTieude(SuaTinTucDTO.getTieude());
+        tinTuc.setLoaitintuc(SuaTinTucDTO.getLoaitintuc());
         tinTuc.setNoidung(SuaTinTucDTO.getNoidung());
         tinTuc.setModifiedBy(SuaTinTucDTO.getUpdateBy());
         tinTuc.setModifiedDate(date);
@@ -38,11 +40,24 @@ public class TintucConvert {
     public TinTucDTO toDTO(TinTuc tinTuc){
         TinTucDTO tinTucDTO = new TinTucDTO();
         tinTucDTO.setTieude(tinTuc.getTieude());
+        if(tinTuc.getLoaitintuc() == null){
+            tinTucDTO.setLoaitintuc("");
+        }else{
+            tinTucDTO.setLoaitintuc(tinTuc.getLoaitintuc() == true ?"Học Tập":"Hoạt Động");
+        }
         tinTucDTO.setNoidung(tinTuc.getNoidung());
         tinTucDTO.setCreatedBy(tinTuc.getCreatedBy());
         tinTucDTO.setCreatedDate(tinTuc.getCreatedDate());
-        tinTucDTO.setUpdateBy(tinTuc.getModifiedBy());
-        tinTucDTO.setUpdateDate(tinTuc.getModifiedDate());
+        if(tinTuc.getModifiedBy() == null){
+            tinTucDTO.setUpdateBy(null);
+        }else{
+            tinTucDTO.setUpdateBy(tinTuc.getModifiedBy());
+        }
+        if(tinTuc.getModifiedDate() == null){
+            tinTucDTO.setUpdateDate(null);
+        }else{
+            tinTucDTO.setUpdateDate(tinTuc.getModifiedDate());
+        }
         return tinTucDTO;
     }
 }

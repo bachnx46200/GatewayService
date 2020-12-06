@@ -36,4 +36,9 @@ public class TintucServiceImpl implements ITintucService {
         tinTucRespository.save(dataDelete);
         return dataDelete;
     }
+
+    @Override
+    public List<TinTuc> findByloaitintuc(Boolean loaitintuc) {
+        return tinTucRespository.findByLoaitintuc(loaitintuc);
+    }
 }

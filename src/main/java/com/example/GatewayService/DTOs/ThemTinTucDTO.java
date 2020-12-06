@@ -10,6 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ThemTinTucDTO {
     private String tieude;
+    private Boolean loaitintuc;
     private String noidung;
     private UUID createdBy;
 }

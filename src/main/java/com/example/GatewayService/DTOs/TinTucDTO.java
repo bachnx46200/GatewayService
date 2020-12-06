@@ -12,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TinTucDTO {
     private String tieude;
+    private String loaitintuc;
     private String noidung;
     private Date createdDate;
     private UUID createdBy;
