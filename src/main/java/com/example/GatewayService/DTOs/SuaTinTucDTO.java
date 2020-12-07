@@ -12,6 +12,7 @@ import java.util.UUID;
 public class SuaTinTucDTO {
     private UUID id;
     private String tieude;
+    private Boolean loaitintuc;
     private String noidung;
     private UUID updateBy;
 }

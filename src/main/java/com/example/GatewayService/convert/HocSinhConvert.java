@@ -24,6 +24,18 @@ public class HocSinhConvert {
         hocSinhDTO.setDiachi(hocsinh.getDiachi());
         hocSinhDTO.setDienthoai(hocsinh.getDienthoai());
         hocSinhDTO.setEmail(hocsinh.getEmail());
+        hocSinhDTO.setDantoc(hocsinh.getDantoc());
+        hocSinhDTO.setTongiao(hocsinh.getTongiao());
+        hocSinhDTO.setNgayvaodoan(hocsinh.getNgayvaodoan());
+        hocSinhDTO.setNoisinh(hocsinh.getNoisinh());
+        hocSinhDTO.setCmnd(hocsinh.getCmnd());
+        hocSinhDTO.setHotenBo(hocsinh.getHotenBo());
+        hocSinhDTO.setHotenMe(hocsinh.getHotenMe());
+        hocSinhDTO.setDienthoaiBo(hocsinh.getDienthoaiBo());
+        hocSinhDTO.setDienthoaiMe(hocsinh.getDienthoaiMe());
+        hocSinhDTO.setDvCongTacBo(hocsinh.getDvCongTacBo());
+        hocSinhDTO.setDvCongTacMe(hocsinh.getDvCongTacMe());
+        hocSinhDTO.setNguoidamho(hocsinh.getDvCongTacMe());
         hocSinhDTO.setMalop(hocsinh.getLop().getMalop());
         return hocSinhDTO;
     }

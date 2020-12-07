@@ -25,18 +25,23 @@ public class TinTuc {
     @Column
     private String tieude;
 
+    @Column
+    private Boolean loaitintuc;
+
     @Column(length = 100000)
     private String noidung;
 
     @Column(updatable = false)
     private UUID createdBy;
 
+    @Temporal(TemporalType.DATE)
     @Column(updatable = false)
     private Date createdDate;
 
     @Column(insertable = false)
     private UUID modifiedBy;
 
+    @Temporal(TemporalType.DATE)
     @Column(insertable = false)
     private Date modifiedDate;
 

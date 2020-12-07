@@ -1,3 +1,4 @@
+
 package com.example.GatewayService.api;
 
 import com.example.GatewayService.DTOs.SuaTinTucDTO;
@@ -87,3 +88,5 @@ public class TintucController {
     	   return new ResponseEntity<>(tinTucList, HttpStatus.OK);
     }
 }
+
+

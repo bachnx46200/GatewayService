@@ -1,3 +1,4 @@
+
 package com.example.GatewayService.repository;
 
 import com.example.GatewayService.entity.TinTuc;
