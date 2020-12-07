@@ -17,7 +17,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Hocsinh {
-
     @Id
     @Column(unique = true)
     private UUID id;
@@ -27,6 +26,7 @@ public class Hocsinh {
     private String hoten;
     @Column
     private Boolean gioitinh;
+    @Temporal(TemporalType.DATE)
     @Column
     private Date ngaysinh;
     @Column
@@ -37,6 +37,7 @@ public class Hocsinh {
     private String dantoc;
     @Column
     private String tongiao;
+    @Temporal(TemporalType.DATE)
     @Column
     private Date ngayvaodoan;
     @Column

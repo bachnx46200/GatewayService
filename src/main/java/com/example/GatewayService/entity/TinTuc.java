@@ -34,12 +34,14 @@ public class TinTuc {
     @Column(updatable = false)
     private UUID createdBy;
 
+    @Temporal(TemporalType.DATE)
     @Column(updatable = false)
     private Date createdDate;
 
     @Column(insertable = false)
     private UUID modifiedBy;
 
+    @Temporal(TemporalType.DATE)
     @Column(insertable = false)
     private Date modifiedDate;
 

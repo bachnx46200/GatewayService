@@ -17,5 +17,17 @@ public class HocSinhDTO {
     private String diachi;
     private String dienthoai;
     private String email;
+    private String dantoc;
+    private String tongiao;
+    private Date ngayvaodoan;
+    private String noisinh;
+    private String cmnd;
+    private String hotenBo;
+    private String hotenMe;
+    private String dienthoaiBo;
+    private String dienthoaiMe;
+    private String dvCongTacBo;
+    private String dvCongTacMe;
+    private String nguoidamho;
     private String malop;
 }
