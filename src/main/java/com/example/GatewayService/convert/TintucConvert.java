@@ -46,10 +46,8 @@ public class TintucConvert {
 
     public TinTucDTO toDTO(TinTuc tinTuc){
         Optional<GiaoVien> create = giaoVienService.findByid(tinTuc.getCreatedBy());
-        if(tinTuc.getModifiedBy() != null){
-
-        }
         TinTucDTO tinTucDTO = new TinTucDTO();
+        tinTucDTO.setId(tinTuc.getId());
         tinTucDTO.setTieude(tinTuc.getTieude());
         if(tinTuc.getLoaitintuc() == null){
             tinTucDTO.setLoaitintuc("");
