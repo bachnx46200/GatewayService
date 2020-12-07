@@ -6,6 +6,7 @@ import com.example.GatewayService.DTOs.TinTucDTO;
 import com.example.GatewayService.convert.TintucConvert;
 import com.example.GatewayService.entity.TinTuc;
 import com.example.GatewayService.exception.ResourceNotFoundException;
+import com.example.GatewayService.repository.TinTucRespository;
 import com.example.GatewayService.service.ITintucService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,21 @@ public class TintucController {
 
     @Autowired
     TintucConvert tintucConvert;
+    
+    @Autowired
+    TinTucRespository tintucRepository;
 
     @GetMapping("/tintuc")
     public ResponseEntity<?> getall(){
         List<TinTuc> tinTucList = tintucService.findAll();
+        List<TinTucDTO> tinTucDTOS = new ArrayList<>();
+        tinTucList.forEach(x -> tinTucDTOS.add(tintucConvert.toDTO(x)));
+        return new ResponseEntity<>(tinTucDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping("/tintuc/{loaitintuc}")
+    public ResponseEntity<?> gettintuchoctap(@PathVariable String loaitintuc){
+        List<TinTuc> tinTucList = tintucService.findByloaitintuc(loaitintuc.equals("hoctap")? true:false);
         List<TinTucDTO> tinTucDTOS = new ArrayList<>();
         tinTucList.forEach(x -> tinTucDTOS.add(tintucConvert.toDTO(x)));
         return new ResponseEntity<>(tinTucDTOS, HttpStatus.OK);
@@ -59,5 +71,19 @@ public class TintucController {
         } else {
             throw new ResourceNotFoundException("Khong tim thay tin tuc can xoa: " + id);
         }
+    }
+    
+	/* tuan_anh T12-2020 */
+    
+    @GetMapping("/tieude-true")
+    public ResponseEntity<?> getByTieuDe(@RequestParam(value = "tieude", required = false) String tieude){
+    	   List<TinTuc> tinTucList = tintucRepository.findByTieuDeandTrue(tieude);
+    	   return new ResponseEntity<>(tinTucList, HttpStatus.OK);
+    }
+    
+    @GetMapping("/tieude-false")
+    public ResponseEntity<?> getByTieuDe2(@RequestParam(value = "tieude", required = false) String tieude){
+    	   List<TinTuc> tinTucList = tintucRepository.findByTieuDeandFalse(tieude);
+    	   return new ResponseEntity<>(tinTucList, HttpStatus.OK);
     }
 }
