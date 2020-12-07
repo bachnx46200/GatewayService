@@ -1,3 +1,4 @@
+
 package com.example.GatewayService.repository;
 
 import com.example.GatewayService.entity.TinTuc;
@@ -12,4 +13,11 @@ import java.util.UUID;
 public interface TinTucRespository extends JpaRepository<TinTuc, UUID> {
     @Query("select tt from TinTuc tt where tt.loaitintuc=?1")
     List<TinTuc> findByLoaitintuc(Boolean loaitintuc);
+    
+    
+    @Query(value = "select * from tintuc where tieude ILIKE %?1% and loaitintuc=true ",nativeQuery = true )
+    List<TinTuc> findByTieuDeandTrue(String tieude);
+    
+    @Query(value = "select * from tintuc where tieude ILIKE %?1% and loaitintuc=false ",nativeQuery = true )
+    List<TinTuc> findByTieuDeandFalse(String tieude);
 }

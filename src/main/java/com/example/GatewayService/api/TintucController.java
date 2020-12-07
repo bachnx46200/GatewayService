@@ -1,3 +1,4 @@
+
 package com.example.GatewayService.api;
 
 import com.example.GatewayService.DTOs.SuaTinTucDTO;
@@ -6,6 +7,7 @@ import com.example.GatewayService.DTOs.TinTucDTO;
 import com.example.GatewayService.convert.TintucConvert;
 import com.example.GatewayService.entity.TinTuc;
 import com.example.GatewayService.exception.ResourceNotFoundException;
+import com.example.GatewayService.repository.TinTucRespository;
 import com.example.GatewayService.service.ITintucService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class TintucController {
 
     @Autowired
     TintucConvert tintucConvert;
+    
+    @Autowired
+    TinTucRespository tintucRepository;
 
     @GetMapping("/tintuc")
     public ResponseEntity<?> getall(){
@@ -68,4 +73,20 @@ public class TintucController {
             throw new ResourceNotFoundException("Khong tim thay tin tuc can xoa: " + id);
         }
     }
+    
+	/* tuan_anh T12-2020 */
+    
+    @GetMapping("/tieude-true")
+    public ResponseEntity<?> getByTieuDe(@RequestParam(value = "tieude", required = false) String tieude){
+    	   List<TinTuc> tinTucList = tintucRepository.findByTieuDeandTrue(tieude);
+    	   return new ResponseEntity<>(tinTucList, HttpStatus.OK);
+    }
+    
+    @GetMapping("/tieude-false")
+    public ResponseEntity<?> getByTieuDe2(@RequestParam(value = "tieude", required = false) String tieude){
+    	   List<TinTuc> tinTucList = tintucRepository.findByTieuDeandFalse(tieude);
+    	   return new ResponseEntity<>(tinTucList, HttpStatus.OK);
+    }
 }
+
+
