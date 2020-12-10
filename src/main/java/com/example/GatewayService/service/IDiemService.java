@@ -21,4 +21,8 @@ public interface IDiemService {
     List<diemCuoiNamDTO> findPoint(UUID mahocsinh, String tenlop, Boolean ki);
 
     void delete();
+    
+	/* tuan anh them 10/12/2020 */
+    List<Diem> findBymahocsinhAndKi(UUID id, boolean hocki);
+    
 }
