@@ -52,5 +52,8 @@ public class DiemServiceImpl implements IDiemService {
         diemRepository.deleteAll();
     }
 
-
+    @Override
+    public List<Diem> findBymahocsinhAndKi(UUID id, boolean hocki) {
+        return diemRepository.findBymahocsinhAndKi(id, hocki);
+    }
 }
