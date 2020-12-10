@@ -127,15 +127,14 @@ public class DiemController {
 	 * @return
 	 */
 	@GetMapping("/excel")
-	ResponseEntity<?> exportToExcel(HttpServletResponse response,@RequestParam(value = "mahocsinh", required = false) UUID mahocsinh,
-			@RequestParam(value = "hocki", required = false) String ki,
-			@RequestParam(value = "tenmon", required = false) String tenmon) throws IOException {
+	ResponseEntity<?> exportToExcel(HttpServletResponse response,@RequestParam(value = "id", required = false) UUID id,
+			@RequestParam(value = "hocki", required = false) String ki) throws IOException {
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 		String currentDateTime = dateFormatter.format(new Date());
 		String headerKey = "Content-Disposition";
-		String headerValue = "attachment; filename=Bảng điểm" + currentDateTime + ".xlsx";
+		String headerValue = "attachment; filename=Bang diem" + currentDateTime + ".xlsx";
 		response.setHeader(headerKey, headerValue);
-		List<Diem> list = diemService.findByStudentIDAndSubject(mahocsinh, ki.equals("true") ? true : false, tenmon);
+		List<Diem> list = diemService.findBymahocsinhAndKi(id, ki.equals("true") ? true : false);
 		List<DiemDTO> DiemDTOS = new ArrayList<>();
 		list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
 		DiemExcel excelExporter = new DiemExcel(DiemDTOS);
@@ -153,17 +152,16 @@ public class DiemController {
 	 * @return
 	 */
 	@GetMapping("pdf")
-	ResponseEntity<?> exportToPDF(HttpServletResponse response,@RequestParam(value = "mahocsinh", required = false) UUID mahocsinh,
-			@RequestParam(value = "hocki", required = false) String ki,
-			@RequestParam(value = "tenmon", required = false) String tenmon )
+	ResponseEntity<?> exportToPDF(HttpServletResponse response,@RequestParam(value = "id", required = false) UUID id,
+			@RequestParam(value = "hocki", required = false) String ki )
 			throws DocumentException, IOException {
 		response.setContentType("application/pdf");
 		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 		String currentDateTime = dateFormatter.format(new Date());
 		String headerKey = "Content-Disposition";
-		String headerValue = "attachment; filename=Bảng điểm" + currentDateTime + ".pdf";
+		String headerValue = "attachment; filename=Bang diem" + currentDateTime + ".pdf";
 		response.setHeader(headerKey, headerValue); 
-		List<Diem> list = diemService.findByStudentIDAndSubject(mahocsinh, ki.equals("true") ? true : false, tenmon);
+		List<Diem> list = diemService.findBymahocsinhAndKi(id, ki.equals("true") ? true : false);
 		List<DiemDTO> DiemDTOS = new ArrayList<>();
 		list.forEach(x -> DiemDTOS.add(diemConvert.toDTO(x)));
 		DiemPDF exporter = new DiemPDF(DiemDTOS);
