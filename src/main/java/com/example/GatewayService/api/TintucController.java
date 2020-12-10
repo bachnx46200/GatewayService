@@ -48,6 +48,16 @@ public class TintucController {
         return new ResponseEntity<>(tinTucDTOS, HttpStatus.OK);
     }
 
+    @GetMapping("/tintuc/id")
+    public ResponseEntity<?> gettone(@RequestParam(value = "id", required = false) UUID id){
+        Optional<TinTuc> tinTuc = tintucService.findById(id);
+        if(tinTuc.isPresent()){
+            return new ResponseEntity<>(tintucConvert.toDTO(tinTuc.get()), HttpStatus.OK);
+        }else{
+            return new ResponseEntity("Can not find news with id: ",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/tintuc")
     public ResponseEntity<?> add(@RequestBody ThemTinTucDTO themTinTucDTO){
         TinTuc tinTuc1 = tintucService.save(tintucConvert.toEntityWhenAdd(themTinTucDTO));
