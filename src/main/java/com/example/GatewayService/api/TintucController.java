@@ -40,6 +40,16 @@ public class TintucController {
         return new ResponseEntity<>(tinTucDTOS, HttpStatus.OK);
     }
 
+    @GetMapping("/tintuc/id")
+    public ResponseEntity<?> getone(@RequestParam(value = "tieude", required = false)UUID id){
+        Optional<TinTuc> tinTuc = tintucService.findById(id);
+        if(tinTuc.isPresent()){
+            return new ResponseEntity<>(tintucConvert.toDTO(tinTuc.get()), HttpStatus.OK);
+        }else{
+            return new ResponseEntity("can not find news with id"+id, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/tintuc/{loaitintuc}")
     public ResponseEntity<?> gettintuchoctap(@PathVariable String loaitintuc){
         List<TinTuc> tinTucList = tintucService.findByloaitintuc(loaitintuc.equals("hoctap")? true:false);
