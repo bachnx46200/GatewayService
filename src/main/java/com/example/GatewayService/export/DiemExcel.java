@@ -48,14 +48,13 @@ public class DiemExcel {
 		createCell(row, 4, "Điểm miệng 1", style);
 		createCell(row, 5, "Điểm miệng 2", style);
 		createCell(row, 6, "Điểm miệng 3", style);
-		createCell(row, 7, "Điểm miệng 3", style);
-		createCell(row, 8, "Điểm 15 phút 1", style);
-		createCell(row, 9, "Điểm 15 phút 2", style);
-		createCell(row, 10, "Điểm 15 phút 3", style);
-		createCell(row, 11, "Điểm 1 tiết 1", style);
-		createCell(row, 12, "Điểm 1 tiết 2", style);
-		createCell(row, 13, "Điểm thi", style);
-		createCell(row, 12, "Điểm trung bình môn", style);
+		createCell(row, 7, "Điểm 15 phút 1", style);
+		createCell(row, 8, "Điểm 15 phút 2", style);
+		createCell(row, 9, "Điểm 15 phút 3", style);
+		createCell(row, 10, "Điểm 1 tiết 1", style);
+		createCell(row, 11, "Điểm 1 tiết 2", style);
+		createCell(row, 12, "Điểm thi", style);
+		createCell(row, 13, "Điểm trung bình môn", style);
 
 	}
 
@@ -97,6 +96,7 @@ public class DiemExcel {
 			}else {
 				createCell(row, columnCount++, "Nữ", style);
 			}
+			createCell(row, columnCount++, acc.getMon(), style);
 			createCell(row, columnCount++, acc.getDiemmieng1(), style);
 			createCell(row, columnCount++, acc.getDiemmieng2(), style);
 			createCell(row, columnCount++, acc.getDiemmieng3(), style);
