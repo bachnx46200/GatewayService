@@ -10,7 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SuaTinTucDTO {
-    private UUID id;
+    private int id;
     private String tieude;
     private Boolean loaitintuc;
     private String noidung;

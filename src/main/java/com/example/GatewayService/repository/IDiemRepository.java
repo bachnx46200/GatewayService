@@ -1,5 +1,6 @@
 package com.example.GatewayService.repository;
 
+import com.example.GatewayService.DTOs.KetquaResponse;
 import com.example.GatewayService.DTOs.diemCuoiNamDTO;
 import com.example.GatewayService.DTOs.lopResultDTO;
 import com.example.GatewayService.entity.Diem;
@@ -32,5 +33,7 @@ public interface IDiemRepository extends JpaRepository<Diem, UUID> {
     /* tuan anh them 10/12/2020 */
     @Query("SELECT d FROM Diem d JOIN d.phancong pc join d.hocsinh hs join d.phancong.lop lh join d.phancong.mon m  where hs.id = ?1 and pc.hocki=?2 and hs.lop.id = lh.id and pc.mon=m.mamon")
     List<Diem> findBymahocsinhAndKi(UUID id, boolean hocki);
-    
+
+    @Query("select new com.example.GatewayService.DTOs.KetquaResponse(hs.mahocsinh, hs.hoten, avg(d.diemTBM)) from Diem d join d.hocsinh hs join d.phancong pc join d.hocsinh.lop lh join d.hocsinh.lop.namhoc nh join d.hocsinh.lop.khoi k where nh.trangthai=true and pc.hocki=?1 and k.makhoi=?2 group by hs.mahocsinh, hs.hoten")
+    List<KetquaResponse> findketquaByKi(boolean b, UUID makhoi);
 }

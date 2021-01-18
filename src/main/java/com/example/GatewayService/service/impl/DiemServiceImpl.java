@@ -1,5 +1,6 @@
 package com.example.GatewayService.service.impl;
 
+import com.example.GatewayService.DTOs.KetquaResponse;
 import com.example.GatewayService.DTOs.diemCuoiNamDTO;
 import com.example.GatewayService.DTOs.lopResultDTO;
 import com.example.GatewayService.entity.Diem;
@@ -55,5 +56,10 @@ public class DiemServiceImpl implements IDiemService {
     @Override
     public List<Diem> findBymahocsinhAndKi(UUID id, boolean hocki) {
         return diemRepository.findBymahocsinhAndKi(id, hocki);
+    }
+
+    @Override
+    public List<KetquaResponse> findketquaByKi(boolean b, UUID makhoi) {
+        return diemRepository.findketquaByKi(b, makhoi);
     }
 }

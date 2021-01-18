@@ -20,6 +20,7 @@ public class PhanCong {
     @Id
     @Column(unique = true)
     private UUID maphancong;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private LopHoc lop;
 
@@ -34,6 +35,9 @@ public class PhanCong {
 
     @Column
     private Boolean hocki;
+
+    @Column
+    private int xacnhan;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private NamHoc namhoc;

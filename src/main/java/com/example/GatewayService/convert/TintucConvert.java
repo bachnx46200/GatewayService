@@ -21,7 +21,6 @@ public class TintucConvert {
     public TinTuc toEntityWhenAdd(ThemTinTucDTO themTinTucDTO){
         java.util.Date date = new Date();
         TinTuc tinTuc = new TinTuc();
-        tinTuc.setId(UUID.randomUUID());
         tinTuc.setTieude(themTinTucDTO.getTieude());
         tinTuc.setLoaitintuc(themTinTucDTO.getLoaitintuc());
         tinTuc.setNoidung(themTinTucDTO.getNoidung());

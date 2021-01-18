@@ -9,6 +9,7 @@ import com.example.GatewayService.entity.TinTuc;
 import com.example.GatewayService.exception.ResourceNotFoundException;
 import com.example.GatewayService.repository.TinTucRespository;
 import com.example.GatewayService.service.ITintucService;
+import javassist.runtime.Desc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class TintucController {
 
     @Autowired
     TintucConvert tintucConvert;
-    
+
     @Autowired
     TinTucRespository tintucRepository;
 
@@ -41,7 +42,7 @@ public class TintucController {
     }
 
     @GetMapping("/tintuc/id")
-    public ResponseEntity<?> getone(@RequestParam(value = "tieude", required = false)UUID id){
+    public ResponseEntity<?> getone(@RequestParam(value = "tieude", required = false)int id){
         Optional<TinTuc> tinTuc = tintucService.findById(id);
         if(tinTuc.isPresent()){
             return new ResponseEntity<>(tintucConvert.toDTO(tinTuc.get()), HttpStatus.OK);
@@ -74,7 +75,7 @@ public class TintucController {
     }
 
     @DeleteMapping("/tintuc/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<?> delete(@PathVariable int id) throws ResourceNotFoundException {
         Optional<TinTuc> dataMustBeDelete = tintucService.findById(id);
         if (dataMustBeDelete.isPresent()) {
             TinTuc dataDelete = dataMustBeDelete.get();
@@ -96,6 +97,12 @@ public class TintucController {
     public ResponseEntity<?> getByTieuDe2(@RequestParam(value = "tieude", required = false) String tieude){
     	   List<TinTuc> tinTucList = tintucRepository.findByTieuDeandFalse(tieude);
     	   return new ResponseEntity<>(tinTucList, HttpStatus.OK);
+    }
+
+    @GetMapping("/danhsachthongbao")
+    public ResponseEntity<?> getdanhsachthongbao(){
+        List<TinTuc> tinTucList = tintucService.findAllAndOrder();
+        return new ResponseEntity<>(tinTucList, HttpStatus.OK);
     }
 }
 

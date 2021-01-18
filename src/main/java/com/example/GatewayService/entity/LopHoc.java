@@ -20,10 +20,15 @@ public class LopHoc {
     @Id
     @Column(unique = true)
     private UUID id;
+
     @Column
     private String malop;
+
     @Column
     private String tenlop;
+
+    @Column
+    private int siso;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private NamHoc namhoc;

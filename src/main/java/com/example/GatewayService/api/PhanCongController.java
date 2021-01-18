@@ -1,8 +1,10 @@
 package com.example.GatewayService.api;
 
-import com.example.GatewayService.DTOs.PhanCongDTO;
+import com.example.GatewayService.DTOs.*;
 import com.example.GatewayService.convert.PhanCongConvert;
+import com.example.GatewayService.entity.LopHoc;
 import com.example.GatewayService.entity.PhanCong;
+import com.example.GatewayService.service.ILopHocService;
 import com.example.GatewayService.service.IPhanCongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,10 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 @RequestMapping("/fpt/final")
 public class PhanCongController {
+
+    @Autowired
+    ILopHocService lopHocService;
+
     @Autowired
     IPhanCongService phanCongService;
 
@@ -39,5 +45,53 @@ public class PhanCongController {
         PhanCong newPhanCong = phanCongConvert.toEntity(phanCongDTO);
         phancongModel = phanCongService.save(newPhanCong);
         return new ResponseEntity(phanCongConvert.toDTO(phancongModel), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/hs/gvday/{id}")
+    public ResponseEntity<?> danhsachgiaovien(@PathVariable UUID id){
+        LopHoc lopHoc = lopHocService.findClassById(id);
+        List<Danhsachgiaovienphutrach> list = phanCongService.findgiaovienphutrach(lopHoc.getId());
+        List<DanhsachgiaovienphutrachResponse> responses = new ArrayList<>();
+        for(Danhsachgiaovienphutrach danhsach:list){
+            DanhsachgiaovienphutrachResponse response = new DanhsachgiaovienphutrachResponse();
+            response.setMagiaovien(danhsach.getMagiaovien());
+            response.setTengiaovien(danhsach.getTengiaovien());
+            response.setMonhoc(danhsach.getMonhoc());
+            if(danhsach.getTrangthaidiem()==0){
+                response.setTrangthaidiem("Đã giao, chưa xác nhận");
+            }else if(danhsach.getTrangthaidiem()==1){
+                response.setTrangthaidiem("Yêu cầu xác nhận");
+            }else if(danhsach.getTrangthaidiem()==2){
+                response.setTrangthaidiem("Đã xác nhận");
+            }
+            responses.add(response);
+        }
+        return new ResponseEntity<>(responses, HttpStatus.OK);
+    }
+
+    @GetMapping("/dt/gvphutrach")
+    public ResponseEntity<?> danhsachgiaovienchunhiem(){
+        List<DanhSachChuNhiem> list = phanCongService.danhsachchunhiem();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/dt/dsdiemht")
+    public ResponseEntity<?> trangthaidiemtunglop(){
+        List<DanhSachChuNhiem> list = phanCongService.danhsachchunhiem();
+        List<TrangThaiDiemTungLop> dataresponse= new ArrayList<>();
+        for (DanhSachChuNhiem danhSachChuNhiem:list){
+            TrangThaiDiemTungLop data = new TrangThaiDiemTungLop();
+            int diemht= phanCongService.timdiemchuahoanthien(danhSachChuNhiem.getLop());
+            data.setLop(danhSachChuNhiem.getLop());
+            data.setMagiaovien(danhSachChuNhiem.getMagiaovien());
+            data.setGvphutrach(danhSachChuNhiem.getGvphutrach());
+            if(diemht==0){
+                data.setTrangthai("Đã hoàn thiện");
+            }else{
+                data.setTrangthai("Chưa hoàn thiện");
+            }
+            dataresponse.add(data);
+        }
+        return new ResponseEntity<>(dataresponse, HttpStatus.OK);
     }
 }

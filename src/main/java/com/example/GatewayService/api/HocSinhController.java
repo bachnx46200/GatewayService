@@ -1,8 +1,10 @@
 package com.example.GatewayService.api;
 
 import com.example.GatewayService.DTOs.HocSinhDTO;
+import com.example.GatewayService.DTOs.LopHocDTO;
 import com.example.GatewayService.convert.HocSinhConvert;
 import com.example.GatewayService.entity.Hocsinh;
+import com.example.GatewayService.entity.LopHoc;
 import com.example.GatewayService.service.IHocSinhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -56,4 +58,6 @@ public class HocSinhController {
         }
         return new ResponseEntity<>(hocSinhConvert.toDTO(hocsinhmodel), HttpStatus.OK);
     }
+
+
 }

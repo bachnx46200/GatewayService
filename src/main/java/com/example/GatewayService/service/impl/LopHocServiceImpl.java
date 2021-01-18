@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class LopHocServiceImpl implements ILopHocService {
@@ -27,5 +28,20 @@ public class LopHocServiceImpl implements ILopHocService {
     @Override
     public List<LopHoc> findAll() {
         return lopHocRepository.findAll();
+    }
+
+    @Override
+    public LopHoc findClassById(UUID id) {
+        return lopHocRepository.findClassById(id);
+    }
+
+    @Override
+    public int findTongSoLopHienTai() {
+        return lopHocRepository.findTongSoLopHienTai();
+    }
+
+    @Override
+    public List<LopHoc> timLopHienTai() {
+        return lopHocRepository.timLopHienTai();
     }
 }

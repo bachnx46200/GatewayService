@@ -19,8 +19,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TinTuc {
     @Id
-    @Column(unique = true)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column
     private String tieude;
