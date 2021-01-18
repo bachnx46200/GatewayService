@@ -47,19 +47,5 @@ public class GiaoVien {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<Danhgia> danhgias = new HashSet<>();
-
-    @OneToMany(
-            mappedBy = "giaovien",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<DiemDanh> diemDanhs = new HashSet<>();
-
-    @OneToMany(
-            mappedBy = "giaovien",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
     private Set<PhanCong> phanCongs = new HashSet<>();
 }

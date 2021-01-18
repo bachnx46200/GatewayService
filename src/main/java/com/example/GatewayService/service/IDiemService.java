@@ -1,6 +1,7 @@
 package com.example.GatewayService.service;
 
 
+import com.example.GatewayService.DTOs.KetquaResponse;
 import com.example.GatewayService.DTOs.diemCuoiNamDTO;
 import com.example.GatewayService.DTOs.lopResultDTO;
 import com.example.GatewayService.entity.Diem;
@@ -24,5 +25,6 @@ public interface IDiemService {
     
 	/* tuan anh them 10/12/2020 */
     List<Diem> findBymahocsinhAndKi(UUID id, boolean hocki);
-    
+
+    List<KetquaResponse> findketquaByKi(boolean b, UUID makhoi);
 }

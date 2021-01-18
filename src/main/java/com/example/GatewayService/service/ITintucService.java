@@ -11,9 +11,11 @@ public interface ITintucService {
 
     TinTuc save(TinTuc toEntityWhenAdd);
 
-    Optional<TinTuc> findById(UUID id);
+    Optional<TinTuc> findById(int id);
 
     TinTuc deleteSoftById(TinTuc dataDelete);
 
     List<TinTuc> findByloaitintuc(Boolean loaitintuc);
+
+    List<TinTuc> findAllAndOrder();
 }

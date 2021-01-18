@@ -26,7 +26,7 @@ public class TintucServiceImpl implements ITintucService {
     }
 
     @Override
-    public Optional<TinTuc> findById(UUID id) {
+    public Optional<TinTuc> findById(int id) {
         return tinTucRespository.findById(id);
     }
 
@@ -40,5 +40,10 @@ public class TintucServiceImpl implements ITintucService {
     @Override
     public List<TinTuc> findByloaitintuc(Boolean loaitintuc) {
         return tinTucRespository.findByLoaitintuc(loaitintuc);
+    }
+
+    @Override
+    public List<TinTuc> findAllAndOrder() {
+        return tinTucRespository.findAllOrderByIdDesc();
     }
 }

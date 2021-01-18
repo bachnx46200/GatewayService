@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface TinTucRespository extends JpaRepository<TinTuc, UUID> {
+public interface TinTucRespository extends JpaRepository<TinTuc, Integer> {
     @Query("select tt from TinTuc tt where tt.loaitintuc=?1")
     List<TinTuc> findByLoaitintuc(Boolean loaitintuc);
     
@@ -20,4 +20,7 @@ public interface TinTucRespository extends JpaRepository<TinTuc, UUID> {
     
     @Query(value = "select * from tintuc where tieude ILIKE %?1% and loaitintuc=false ",nativeQuery = true )
     List<TinTuc> findByTieuDeandFalse(String tieude);
+
+    @Query(value = "select * from tintuc order by tintuc.id desc ",nativeQuery = true )
+    List<TinTuc> findAllOrderByIdDesc();
 }

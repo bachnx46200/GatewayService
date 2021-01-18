@@ -61,6 +61,8 @@ public class Hocsinh {
     @Column
     private String dvCongTacMe;
     @Column
+    private String emailphuhuynh;
+    @Column
     private String nguoidamho;
     @Column
     private Boolean trangthai;
@@ -83,17 +85,4 @@ public class Hocsinh {
     )
     private Set<Diem> diems = new HashSet<>();
 
-    @OneToMany(
-            mappedBy = "hocsinh",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<Danhgia> danhgias = new HashSet<>();
-
-    @OneToMany(
-            mappedBy = "hocsinh",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<DiemDanh> diemDanhs = new HashSet<>();
 }
